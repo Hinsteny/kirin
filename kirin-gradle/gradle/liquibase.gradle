@@ -1,0 +1,11 @@
+liquibase {
+    activities {
+        main {
+            driver jdbcDriver
+            changeLogFile changeLog
+            url jdbcUrl
+            username jdbcUser
+            password jdbcPassword
+        }
+    }
+}

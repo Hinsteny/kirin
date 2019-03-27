@@ -2,7 +2,14 @@
 ----
 
 ### 技术选型
-jdk11, mysql8.0, spring5.1, mybatis3, liquibase, log4j2
+jdk8, mysql8.0, spring5.1, mybatis3, liquibase, log4j2
+
+### 模块划分
+
+1. common: 基础类, 通用工具类等
+2. api: RPC-service facade
+3. service: web-restful service provider and RPC service provider
+ 
 
 ### 插件执行
 

@@ -1,0 +1,94 @@
+Configuration:
+  status: error
+  strict: true
+  name: YAMLConfigTest
+  packages: org.apache.logging
+  properties:
+    property:
+      name: logPath
+      value: target/
+
+  appenders:
+    Console:
+      name: STDOUT
+      PatternLayout:
+        Pattern: "%T %-d{yyyy-MM-dd HH:mm:ss} [%-level] [%thread] %c{10} %m%n"
+    File:
+      name: FILE
+      fileName: ${logPath}file.log
+      PatternLayout:
+        Pattern: "%T %-d{yyyy-MM-dd HH:mm:ss} [%-level] [%thread] %c{10} %m%n"
+    RollingFile:
+      -
+        name: FILE-INFO
+        fileName: ${logPath}info/info.log
+        filePattern: ${logPath}info/info-%d{yyyy-MM-dd}.log
+        PatternLayout:
+          Pattern: "%T %-d{yyyy-MM-dd HH:mm:ss} [%-level] [%thread] %c{10} %m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            modulate: true
+            interval: 1
+        Filters:
+          -
+            ThresholdFilter:
+              level: info
+              onMatch: ACCEPT
+              onMismatch: DENY
+      - name: FILE-ERROR
+        fileName: ${logPath}error/error.log
+        filePattern: ${logPath}error/error-%d{yyyy-MM-dd}.log
+        PatternLayout:
+          Pattern: "%T %-d{yyyy-MM-dd HH:mm:ss} [%-level] [%thread] %c{10} %m%n"
+        Policies:
+          TimeBasedTriggeringPolicy:
+            modulate: true
+            interval: 1
+        Filters:
+        -
+          ThresholdFilter:
+            level: error
+            onMatch: ACCEPT
+            onMismatch: DENY
+
+  Loggers:
+    logger:
+    -
+      name: org
+      level: error
+      additivity: true
+      AppenderRef:
+        ref: FILE-ERROR
+    -
+      name: org.springframework
+      level: error
+      additivity: true
+      AppenderRef:
+        ref: FILE-ERROR
+    - name: com.zaxxer.hikari
+      level: error
+      additivity: true
+      AppenderRef:
+        ref: FILE-ERROR
+    -
+      name: org.apache.ibatis
+      level: info
+      additivity: true
+      AppenderRef:
+        ref: FILE-INFO
+    -
+      name: com.alibaba.dubbo
+      level: debug
+      additivity: true
+      AppenderRef:
+        ref: FILE-INFO
+    -
+      name: org.kirin
+      level: debug
+      additivity: true
+      AppenderRef:
+        ref: FILE-INFO
+    Root:
+      level: debug
+      AppenderRef:
+        ref: STDOUT

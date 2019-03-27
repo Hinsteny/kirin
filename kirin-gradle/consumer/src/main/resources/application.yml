@@ -1,0 +1,53 @@
+# App config
+app:
+  name: kirin-consumer
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 51MB
+  session:
+    timeout: 3d
+  application:
+    name: kirin-dubbo-service-consumer
+
+server:
+  servlet:
+    context-path: /api
+  port: 8081
+
+
+# Dubbo config
+# Base packages to scan Dubbo Component: @org.apache.dubbo.config.annotation.Service
+dubbo:
+  scan:
+    base-packages: org.kirin.consumer
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    dubbo:
+      enabled: true
+    dubboshutdown:
+      enabled: true
+    dubboconfigs:
+      enabled: true
+    dubboservices:
+      enabled: true
+    dubboreferences:
+      enabled: true
+    dubboproperties:
+      enabled: true
+
+
+kirin:
+  service:
+    version: 1.0.0
+    url: dubbo://localhost:12345
+
+
+logging:
+  file: log4j2.xml

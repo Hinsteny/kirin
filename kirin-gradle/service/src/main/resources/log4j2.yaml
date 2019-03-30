@@ -6,7 +6,7 @@ Configuration:
   properties:
     property:
       name: logPath
-      value: target/
+      value: log/service/
 
   appenders:
     Console:
@@ -61,7 +61,7 @@ Configuration:
         ref: FILE-ERROR
     -
       name: org.springframework
-      level: error
+      level: debug
       additivity: true
       AppenderRef:
         ref: FILE-ERROR
@@ -78,6 +78,12 @@ Configuration:
         ref: FILE-INFO
     -
       name: com.alibaba.dubbo
+      level: debug
+      additivity: true
+      AppenderRef:
+        ref: FILE-INFO
+    -
+      name: org.apache.dubbo
       level: debug
       additivity: true
       AppenderRef:

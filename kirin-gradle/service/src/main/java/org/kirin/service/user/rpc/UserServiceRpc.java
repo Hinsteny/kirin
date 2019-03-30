@@ -1,4 +1,4 @@
-package org.kirin.user.rpc;
+package org.kirin.service.user.rpc;
 
 import java.util.List;
 import org.apache.dubbo.config.annotation.Service;
@@ -10,7 +10,7 @@ import org.kirin.common.infrastructure.util.ResponseUtil;
 import org.kirin.facade.UserServiceFacade;
 import org.kirin.facade.request.UserInfoReq;
 import org.kirin.facade.response.UserInfoResp;
-import org.kirin.user.UserService;
+import org.kirin.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Hinsteny
  * @version $ID: UserController 2019-03-07 16:13 All rights reserved.$
  */
-@Service(version = "${kirin.service.version}", group = "${kirin.group}", timeout = 1000)
+@Service(version = "${kirin.service.version}", group = "${kirin.service.group}", timeout = 3000)
 public class UserServiceRpc implements UserServiceFacade {
 
     private final Logger logger = LogManager.getLogger(this.getClass());

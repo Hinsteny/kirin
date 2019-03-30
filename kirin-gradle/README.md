@@ -1,8 +1,12 @@
-## kirin-g
+## kirin-kirin-gradle
 ----
+Spring-boot为基础的web服务架构, 以apache-dubbo作为RPC技术实现, 然后再配以nacos为注册中心;
+
+注: 对于dubbo-spring-boot-starter和nacos-client的依赖, 需要clone官方github仓库项目, 安装到本地mavenLocal;
+
 
 ### 技术选型
-jdk8, mysql8.0, spring5.1, mybatis3, liquibase, log4j2
+jdk8, mysql8.0, spring5.1, mybatis3, liquibase, log4j2, apache-dubbo:2.7.1, nacos:1.0.0
 
 ### 模块划分
 
@@ -24,7 +28,8 @@ jdk8, mysql8.0, spring5.1, mybatis3, liquibase, log4j2
 1. 在IDEA开发编译器中直接执行spring-boot程序即可
   
   ```
-  org.kirin.Application
+  1) 服务提供者: org.kirin.service.Application
+  2) 服务消费者: org.kirin.consumer.ConsumerApplication
   ```
 
 2. 在命令行中使用spring-boot插件启动程序

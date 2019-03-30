@@ -1,9 +1,9 @@
-package org.kirin.mybatis.mapper;
+package org.kirin.service.mybatis.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.kirin.mybatis.pojo.VUser;
-import org.kirin.mybatis.pojo.VUserExample;
+import org.kirin.service.mybatis.pojo.VUser;
+import org.kirin.service.mybatis.pojo.VUserExample;
 
 public interface VUserMapper {
     /**

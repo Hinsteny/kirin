@@ -1,4 +1,4 @@
-package org.kirin.mybatis.pojo;
+package org.kirin.service.mybatis.pojo;
 
 import java.util.Date;
 

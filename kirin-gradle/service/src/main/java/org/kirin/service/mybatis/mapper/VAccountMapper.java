@@ -1,9 +1,9 @@
-package org.kirin.mybatis.mapper;
+package org.kirin.service.mybatis.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.kirin.mybatis.pojo.VAccount;
-import org.kirin.mybatis.pojo.VAccountExample;
+import org.kirin.service.mybatis.pojo.VAccount;
+import org.kirin.service.mybatis.pojo.VAccountExample;
 
 public interface VAccountMapper {
     /**

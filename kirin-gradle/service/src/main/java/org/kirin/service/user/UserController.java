@@ -1,4 +1,4 @@
-package org.kirin.user;
+package org.kirin.service.user;
 
 import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.ApiOperation;
@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.kirin.common.infrastructure.response.BaseResponse;
 import org.kirin.common.infrastructure.util.ResponseUtil;
-import org.kirin.user.request.CreateUserReq;
+import org.kirin.service.user.request.CreateUserReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

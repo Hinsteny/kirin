@@ -3,6 +3,8 @@ app:
   name: kirin-consumer
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   servlet:
     multipart:
       max-file-size: 50MB
@@ -23,31 +25,11 @@ server:
 dubbo:
   scan:
     base-packages: org.kirin.consumer
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    dubbo:
-      enabled: true
-    dubboshutdown:
-      enabled: true
-    dubboconfigs:
-      enabled: true
-    dubboservices:
-      enabled: true
-    dubboreferences:
-      enabled: true
-    dubboproperties:
-      enabled: true
-
 
 kirin:
   service:
     version: 1.0.0
-    url: dubbo://localhost:12345
-
+    url: nacos://127.0.0.1:8848
 
 logging:
   file: log4j2.xml

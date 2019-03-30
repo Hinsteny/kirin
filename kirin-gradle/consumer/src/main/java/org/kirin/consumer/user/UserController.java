@@ -5,7 +5,6 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.kirin.common.infrastructure.response.BaseResponse;
-import org.kirin.common.infrastructure.util.ResponseUtil;
 import org.kirin.facade.UserServiceFacade;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +21,7 @@ public class UserController {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    @Reference(version = "${kirin.service.version}", url = "${kirin.service.url}")
+    @Reference(version = "${kirin.service.version}", group = "${kirin.service.group}")
     private UserServiceFacade userServiceFacade;
 
     @GetMapping("")

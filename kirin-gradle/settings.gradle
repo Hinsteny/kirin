@@ -8,5 +8,8 @@
  */
 
 rootProject.name = 'kirin-gradle'
-include 'api', 'service', 'common', 'consumer'
+include 'common'
+include 'api'
+include 'service'
+include 'consumer'
 

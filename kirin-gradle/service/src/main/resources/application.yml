@@ -3,6 +3,8 @@ app:
   name: kirin
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: pay_user
@@ -29,22 +31,9 @@ server:
     context-path: /api
   port: 8080
 
-
-# Dubbo config
-# Base packages to scan Dubbo Component: @org.apache.dubbo.config.annotation.Service
-dubbo:
-  scan:
-    base-packages: org.kirin
-  protocol:
-    name: dubbo
-    port: 12345
-  registry:
-    address: N/A
-
-kirin:
-  service:
-    version: 1.0.0
-  group: hisoka
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
 
 logging:
   file: log4j2.yaml

@@ -1,14 +1,14 @@
-package org.kirin.user;
+package org.kirin.service.user;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.kirin.facade.response.UserInfoResp;
-import org.kirin.mybatis.mapper.VUserMapper;
-import org.kirin.mybatis.pojo.VUser;
-import org.kirin.mybatis.pojo.VUserExample;
-import org.kirin.user.request.CreateUserReq;
+import org.kirin.service.mybatis.mapper.VUserMapper;
+import org.kirin.service.mybatis.pojo.VUser;
+import org.kirin.service.mybatis.pojo.VUserExample;
+import org.kirin.service.user.request.CreateUserReq;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

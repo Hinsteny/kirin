@@ -1,4 +1,4 @@
-package org.kirin.user.request;
+package org.kirin.service.user.request;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

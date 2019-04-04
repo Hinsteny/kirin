@@ -11,6 +11,7 @@ import org.kirin.facade.UserServiceFacade;
 import org.kirin.facade.request.UserInfoReq;
 import org.kirin.facade.response.UserInfoResp;
 import org.kirin.service.user.UserService;
+import org.kirin.service.user.request.CreateUserReq;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -45,6 +46,7 @@ public class UserServiceRpc implements UserServiceFacade {
      */
     @Override
     public StatusResponse create(UserInfoReq request) {
-        return null;
+        userService.createUser(CreateUserReq.builder().name(request.getName()).password(request.getPassword()).sex(request.getSex()).email(request.getEmail()).build());
+        return ResponseUtil.successStatus();
     }
 }

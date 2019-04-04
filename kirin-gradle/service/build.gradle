@@ -43,6 +43,8 @@ dependencies {
     compile("com.alibaba.spring:spring-context-support:1.0.2")
     compile("org.apache.dubbo:dubbo-registry-nacos:2.7.1")
 
+    compile("org.apache.rocketmq:rocketmq-client:4.4.0")
+
     liquibaseRuntime("org.liquibase:liquibase-core:3.6.2")
     liquibaseRuntime("org.liquibase:liquibase-groovy-dsl:2.0.1")
     liquibaseRuntime('mysql:mysql-connector-java:8.0.15')

@@ -1,6 +1,13 @@
 # App config
 app:
   name: kirin
+  mq:
+    url: localhost:9876
+    default-consumer-name: kirin-default-consumer-group
+  message:
+    user:
+      topic: user
+      tags: create
 
 spring:
   main:

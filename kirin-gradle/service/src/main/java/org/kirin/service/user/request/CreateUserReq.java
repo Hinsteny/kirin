@@ -2,6 +2,7 @@ package org.kirin.service.user.request;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
@@ -12,6 +13,7 @@ import org.hibernate.validator.constraints.Length;
  */
 @Getter
 @Setter
+@Builder
 public class CreateUserReq {
 
     @NotBlank(message = "用户名不应为空")

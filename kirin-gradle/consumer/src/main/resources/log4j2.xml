@@ -48,7 +48,7 @@
       <AppenderRef ref="FILE-ERROR"/>
     </Logger>
 
-    <Logger name="org.springframework" level="debug" additivity="true">
+    <Logger name="org.springframework" level="error" additivity="true">
       <AppenderRef ref="FILE-ERROR"/>
     </Logger>
 
@@ -60,7 +60,7 @@
       <AppenderRef ref="FILE-ERROR"/>
     </Logger>
 
-    <Logger name="org.apache.dubbo" level="debug" additivity="true">
+    <Logger name="org.apache.dubbo" level="info" additivity="true">
       <AppenderRef ref="FILE-ERROR"/>
     </Logger>
 

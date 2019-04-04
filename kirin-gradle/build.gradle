@@ -36,7 +36,7 @@ allprojects {
     targetCompatibility = JavaVersion.VERSION_1_8
 
     group = 'org.kirin'
-    version = '0.0.3-SNAPSHOT'
+    version = '0.0.4-SNAPSHOT'
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"

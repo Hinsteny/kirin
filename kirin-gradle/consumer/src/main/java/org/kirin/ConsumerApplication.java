@@ -1,4 +1,4 @@
-package org.kirin.consumer;
+package org.kirin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -29,7 +29,7 @@ public class UserService {
         vUser.setPassword(user.getPassword());
         vUser.setSex(user.getSex());
         vUser.setEmail(user.getEmail());
-        vUserMapper.insert(vUser);
+        vUserMapper.insertSelective(vUser);
     }
 
     public List<UserInfoResp> searchUserByName(String key) {

@@ -1,5 +1,7 @@
 package org.kirin.facade.request;
 
+import java.io.Serializable;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class UserInfoReq {
+public class UserInfoReq implements Serializable {
 
     private String name;
 

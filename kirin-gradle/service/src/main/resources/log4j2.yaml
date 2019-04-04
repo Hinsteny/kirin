@@ -61,7 +61,7 @@ Configuration:
         ref: FILE-ERROR
     -
       name: org.springframework
-      level: debug
+      level: error
       additivity: true
       AppenderRef:
         ref: FILE-ERROR
@@ -78,13 +78,13 @@ Configuration:
         ref: FILE-INFO
     -
       name: com.alibaba.dubbo
-      level: debug
+      level: info
       additivity: true
       AppenderRef:
         ref: FILE-INFO
     -
       name: org.apache.dubbo
-      level: debug
+      level: info
       additivity: true
       AppenderRef:
         ref: FILE-INFO

@@ -1,0 +1,57 @@
+# App config
+app:
+  name: kirin-consumer
+  mq:
+    url: 39.98.66.145:9876
+    default-producer-name: kirin-default-producer-group
+  message:
+    batch-size: 20
+    user:
+      topic: user
+      tags: create
+    account:
+      topic: account
+      tags: create
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: pay_user
+    password: welcome
+    url: jdbc:mysql://127.0.0.1:3306/pay?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      max-lifetime: 30000
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 51MB
+  session:
+    timeout: 3d
+  application:
+    name: kirin-dubbo-service-consumer
+
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+
+server:
+  servlet:
+    context-path: /api
+  port: 8082
+
+
+# Dubbo config
+# Base packages to scan Dubbo Component: @org.apache.dubbo.config.annotation.Service
+dubbo:
+  scan:
+    base-packages: org.kirin.consumer
+
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
+
+logging:
+  file: log4j2.xml

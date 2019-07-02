@@ -2,42 +2,264 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
+  <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.3.RELEASE</version>
+		<version>2.1.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>org.kirin</groupId>
-	<artifactId>kirin</artifactId>
+	<artifactId>kirin-maven</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
 	<name>kirin</name>
 	<description>Project kirin for Spring Boot</description>
 
+	<modules>
+		<module>service</module>
+		<module>common</module>
+		<module>api</module>
+		<module>consumer</module>
+	</modules>
+
 	<properties>
-		<java.version>11</java.version>
+		<java.version>12</java.version>
+    <!-- dependency plugin version -->
+    <camel-maven-plugin.version>3.0.0-M2</camel-maven-plugin.version>
+    <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+    <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+
+		<liquibase-maven-plugin.version>3.6.3</liquibase-maven-plugin.version>
+		<mybatis-generator-maven-plugin.version>1.3.7</mybatis-generator-maven-plugin.version>
+
+		<mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
+
+		<nacos-client.version>1.0.0-RC2</nacos-client.version>
+		<nacos-config-spring-boot-starter.version>0.2.1</nacos-config-spring-boot-starter.version>
+		<spring-context-support.version>1.0.2</spring-context-support.version>
+		<dubbo.version>2.7.1</dubbo.version>
+		<dubbo-registry-nacos.version>2.7.1</dubbo-registry-nacos.version>
+
+		<mysql.version>8.0.15</mysql.version>
+		<rocketmq-client.version>4.4.0</rocketmq-client.version>
+
+		<swagger.version>2.9.2</swagger.version>
+		<commons-lang3.version>3.8.1</commons-lang3.version>
+		<commons-collections4.version>4.2</commons-collections4.version>
+		<fastjson.version>1.2.57</fastjson.version>
+		<jackson-dataformat.version>2.9.8</jackson-dataformat.version>
+
+
 	</properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+	<dependencyManagement>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+		<dependencies>
+			<!-- ############## project-model ############## -->
+			<dependency>
+				<groupId>org.kirin</groupId>
+				<artifactId>common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kirin</groupId>
+				<artifactId>api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.kirin</groupId>
+				<artifactId>service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<!-- ############## /project-model ############## -->
+
+			<!-- ############## compile ############## -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<!-- ############## /compile ############## -->
+
+			<!-- ############## mybatis-spring-boot ############## -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis-spring-boot-starter.version}</version>
+			</dependency>
+			<!-- ############## /mybatis-spring-boot ############## -->
+
+			<!-- ############## config ############## -->
+			<dependency>
+				<groupId>com.alibaba.nacos</groupId>
+				<artifactId>nacos-client</artifactId>
+				<version>${nacos-client.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba.boot</groupId>
+				<artifactId>nacos-config-spring-boot-starter</artifactId>
+				<version>${nacos-config-spring-boot-starter.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba.spring</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring-context-support.version}</version>
+			</dependency>
+			<!-- ############## /config ############## -->
+
+			<!-- ############## dubbo-all ############## -->
+			<dependency>
+				<groupId>org.apache.dubbo</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dubbo.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.dubbo</groupId>
+				<artifactId>dubbo-spring-boot-starter</artifactId>
+				<version>${dubbo.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.dubbo</groupId>
+				<artifactId>dubbo-registry-nacos</artifactId>
+				<version>${dubbo-registry-nacos.version}</version>
+			</dependency>
+			<!-- ############## /dubbo-all ############## -->
+
+			<!-- ############## databases ############## -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+			<!-- ############## /databases ############## -->
+
+			<!-- ############## mq ############## -->
+			<dependency>
+				<groupId>org.apache.rocketmq</groupId>
+				<artifactId>rocketmq-client</artifactId>
+				<version>${rocketmq-client.version}</version>
+			</dependency>
+			<!-- ############## /mq ############## -->
+
+			<!-- ############## swagger ############## -->
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-bean-validators</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+			<!-- ############## /swagger ############## -->
+
+			<!-- ############## three-party ############## -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons-collections4.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.dataformat</groupId>
+				<artifactId>jackson-dataformat-yaml</artifactId>
+				<version>${jackson-dataformat.version}</version>
+			</dependency>
+
+			<!-- ############## /three-party ############## -->
+
+
+		</dependencies>
+
+	</dependencyManagement>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.liquibase</groupId>
+					<artifactId>liquibase-maven-plugin</artifactId>
+					<version>${liquibase-maven-plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.mybatis.generator</groupId>
+					<artifactId>mybatis-generator-maven-plugin</artifactId>
+					<version>${mybatis-generator-maven-plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+							<version>${mysql.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+
+				<!-- allows the route to be ran via 'mvn camel:run' -->
+				<plugin>
+					<groupId>org.apache.camel</groupId>
+					<artifactId>camel-maven-plugin</artifactId>
+					<version>${camel-maven-plugin.version}</version>
+				</plugin>
+
+				<!-- allows the route to be ran via 'mvn camel:run' -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${maven-install-plugin.version}</version>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
 	</build>
 
 </project>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="Mysql" targetRuntime="MyBatis3">
+
+    <commentGenerator>
+      <property name="suppressDate" value="true"></property>
+      <property name="javaFileEncoding" value="utf-8"/>
+    </commentGenerator>
+
+    <!-- jdbc 连接信息  -->
+    <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+      connectionURL="jdbc:mysql://127.0.0.1:3306/account?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"
+      userId="pay_user"
+      password="welcome">
+      <property name="nullCatalogMeansCurrent" value="true" />
+    </jdbcConnection>
+
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <!-- 实体类所在包名 -->
+    <javaModelGenerator targetPackage="org.kirin.service.mybatis.pojo" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true"></property>
+      <property name="trimStrings" value="true"></property>
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="mapper"
+      targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+
+    <!-- mapper 所在包名 -->
+    <javaClientGenerator targetPackage="org.kirin.service.mybatis.mapper" targetProject="src/main/java" type="XMLMAPPER">
+      <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
+
+    <table tableName="v_%" schema="pay" modelType="flat">
+      <!--<domainObjectRenamingRule searchString="^V" replaceString=""/>-->
+    </table>
+  </context>
+</generatorConfiguration>

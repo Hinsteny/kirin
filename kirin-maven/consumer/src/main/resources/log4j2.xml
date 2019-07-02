@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error" strict="true" name="XMLConfigTest" packages="org.apache.logging">
+  <Properties>
+    <Property name="logPath">log/consumer/</Property>
+    <Property name="logLayout">%T %-d{yyyy-MM-dd HH:mm:ss} [%-level] [%thread] %c{10} %m%n</Property>
+  </Properties>
+
+  <Appenders>
+    <Appender type="Console" name="STDOUT">
+      <Layout type="PatternLayout">
+        <Pattern>${logLayout}</Pattern>
+      </Layout>
+    </Appender>
+
+    <Appender type="File" name="FILE" fileName="${logPath}file.log">
+      <Layout type="PatternLayout">
+        <Pattern>${logLayout}</Pattern>
+      </Layout>
+    </Appender>
+
+    <appender name="rocketmqAppender" class="org.apache.rocketmq.logappender.log4j.RocketmqLog4jAppender">
+      <param name="Tag" value="create"/>
+      <param name="Topic" value="user"/>
+      <param name="ProducerGroup" value="yourLogGroup"/>
+      <param name="NameServerAddress" value="172.26.115.113:9876"/>
+      <layout class="org.apache.log4j.PatternLayout">
+        <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}-%p %t %c - %m%n"/>
+      </layout>
+    </appender>
+
+    <RollingFile name="FILE-INFO" fileName="${logPath}info/info.log" filePattern="${logPath}info/info-%d{yyyy-MM-dd}.log">
+      <Filters>
+        <Filter type="ThresholdFilter" level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+      </Filters>
+      <Layout type="PatternLayout">
+        <Pattern>${logLayout}</Pattern>
+      </Layout>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+      </Policies>
+    </RollingFile>
+
+    <RollingFile name="FILE-ERROR" fileName="${logPath}error/error.log" filePattern="${logPath}error/error-%d{yyyy-MM-dd}.log">
+      <Filters>
+        <Filter type="ThresholdFilter" level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+      </Filters>
+      <Layout type="PatternLayout">
+        <Pattern>${logLayout}</Pattern>
+      </Layout>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+      </Policies>
+    </RollingFile>
+  </Appenders>
+
+  <Loggers>
+    <Logger name="org.apache" level="error" additivity="true">
+      <AppenderRef ref="FILE-ERROR"/>
+    </Logger>
+
+    <Logger name="org.springframework" level="error" additivity="true">
+      <AppenderRef ref="FILE-ERROR"/>
+    </Logger>
+
+    <Logger name="org.apache.ibatis" level="error" additivity="true">
+      <AppenderRef ref="FILE-INFO"/>
+    </Logger>
+
+    <Logger name="com.zaxxer.hikari" level="error" additivity="true">
+      <AppenderRef ref="FILE-ERROR"/>
+    </Logger>
+
+    <Logger name="org.apache.dubbo" level="info" additivity="true">
+      <AppenderRef ref="FILE-ERROR"/>
+    </Logger>
+
+    <Logger name="org.apache.rocketmq" level="debug" additivity="true">
+      <AppenderRef ref="FILE-INFO"/>
+    </Logger>
+
+    <Logger name="org.kirin" level="debug" additivity="true">
+      <AppenderRef ref="FILE-INFO"/>
+    </Logger>
+
+    <Root level="debug">
+      <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+
+</Configuration>

@@ -18,6 +18,16 @@
       </Layout>
     </Appender>
 
+    <appender name="rocketmqAppender" class="org.apache.rocketmq.logappender.log4j.RocketmqLog4jAppender">
+      <param name="Tag" value="create"/>
+      <param name="Topic" value="user"/>
+      <param name="ProducerGroup" value="yourLogGroup"/>
+      <param name="NameServerAddress" value="172.26.115.113:9876"/>
+      <layout class="org.apache.log4j.PatternLayout">
+        <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss}-%p %t %c - %m%n"/>
+      </layout>
+    </appender>
+
     <RollingFile name="FILE-INFO" fileName="${logPath}info/info.log" filePattern="${logPath}info/info-%d{yyyy-MM-dd}.log">
       <Filters>
         <Filter type="ThresholdFilter" level="info" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -64,13 +74,16 @@
       <AppenderRef ref="FILE-ERROR"/>
     </Logger>
 
+    <Logger name="org.apache.rocketmq" level="debug" additivity="true">
+      <AppenderRef ref="FILE-INFO"/>
+    </Logger>
+
     <Logger name="org.kirin" level="debug" additivity="true">
       <AppenderRef ref="FILE-INFO"/>
     </Logger>
 
     <Root level="debug">
       <AppenderRef ref="STDOUT"/>
-      <AppenderRef ref="FILE"/>
     </Root>
   </Loggers>
 

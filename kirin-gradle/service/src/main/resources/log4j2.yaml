@@ -19,8 +19,7 @@ Configuration:
       PatternLayout:
         Pattern: "%T %-d{yyyy-MM-dd HH:mm:ss} [%-level] [%thread] %c{10} %m%n"
     RollingFile:
-      -
-        name: FILE-INFO
+      - name: FILE-INFO
         fileName: ${logPath}info/info.log
         filePattern: ${logPath}info/info-%d{yyyy-MM-dd}.log
         PatternLayout:
@@ -53,47 +52,47 @@ Configuration:
 
   Loggers:
     logger:
-    -
-      name: org
-      level: error
-      additivity: true
-      AppenderRef:
-        ref: FILE-ERROR
-    -
-      name: org.springframework
-      level: error
-      additivity: true
-      AppenderRef:
-        ref: FILE-ERROR
-    - name: com.zaxxer.hikari
-      level: error
-      additivity: true
-      AppenderRef:
-        ref: FILE-ERROR
-    -
-      name: org.apache.ibatis
-      level: info
-      additivity: true
-      AppenderRef:
-        ref: FILE-INFO
-    -
-      name: com.alibaba.dubbo
-      level: info
-      additivity: true
-      AppenderRef:
-        ref: FILE-INFO
-    -
-      name: org.apache.dubbo
-      level: info
-      additivity: true
-      AppenderRef:
-        ref: FILE-INFO
-    -
-      name: org.kirin
-      level: debug
-      additivity: true
-      AppenderRef:
-        ref: FILE-INFO
+      -
+        name: org
+        level: error
+        additivity: true
+        AppenderRef:
+          ref: FILE-ERROR
+      -
+        name: org.springframework
+        level: error
+        additivity: true
+        AppenderRef:
+          ref: FILE-ERROR
+      - name: com.zaxxer.hikari
+        level: error
+        additivity: true
+        AppenderRef:
+          ref: FILE-ERROR
+      -
+        name: org.apache.ibatis
+        level: info
+        additivity: true
+        AppenderRef:
+          ref: FILE-INFO
+      -
+        name: com.alibaba.dubbo
+        level: info
+        additivity: true
+        AppenderRef:
+          ref: FILE-INFO
+      -
+        name: org.apache.dubbo
+        level: info
+        additivity: true
+        AppenderRef:
+          ref: FILE-INFO
+      -
+        name: org.kirin
+        level: debug
+        additivity: true
+        AppenderRef:
+          ref: FILE-INFO
     Root:
       level: debug
       AppenderRef:

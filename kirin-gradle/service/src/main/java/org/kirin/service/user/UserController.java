@@ -1,6 +1,7 @@
 package org.kirin.service.user;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import io.swagger.annotations.ApiOperation;
 import java.util.ArrayList;
 import javax.validation.Valid;
@@ -27,6 +28,9 @@ public class UserController {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    @NacosValue(value = "${appName}", autoRefreshed = true)
+    private String appName;
+
     @Autowired
     private UserService userService;
 
@@ -43,6 +47,14 @@ public class UserController {
         logger.info("创建用户: {}", JSON.toJSONString(request));
         userService.createUser(request);
         return ResponseUtil.successResponse(new ArrayList<>());
+    }
+
+    /** ======================== test nacos config  =======================**/
+    @PostMapping("/queryConfigName")
+    @ApiOperation("查询nacos配置项值")
+    public BaseResponse queryConfig() {
+        logger.info("查询nacos配置项值", JSON.toJSONString(appName));
+        return ResponseUtil.successResponse(appName);
     }
 
 }

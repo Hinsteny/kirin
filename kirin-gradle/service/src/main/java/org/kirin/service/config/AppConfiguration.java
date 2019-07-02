@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
+import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 import org.kirin.service.message.UserMessageConsumerService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +34,11 @@ public class AppConfiguration {
         consumer.setNamesrvAddr(env.getProperty("app.mq.url"));
         // Subscribe one more more topics to consume.
         consumer.subscribe(env.getProperty("app.message.user.topic"), "*");
+
+        consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
+        //set to broadcast mode
+        consumer.setMessageModel(MessageModel.BROADCASTING);
+
         // Register callback to execute on arrival of messages fetched from brokers.
         consumer.registerMessageListener(messageListenerConcurrently);
         //Launch the consumer instance.

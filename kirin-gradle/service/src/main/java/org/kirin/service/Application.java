@@ -1,5 +1,6 @@
 package org.kirin.service;
 
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.PropertySource;
 @EnableDubbo(scanBasePackages = "org.kirin.service")
 @PropertySource(value = "classpath:/provider-config.properties")
 @MapperScan(basePackages = {"org.kirin.service.mybatis.mapper"})
+@NacosPropertySource(dataId = "kirin", autoRefreshed = true)
 public class Application {
 
     public static void main(String[] args) {
